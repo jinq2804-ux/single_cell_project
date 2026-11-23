@@ -1,0 +1,11 @@
+{
+  "stage": "final_refit",
+  "n_train": 525,
+  "n_validation": 0,
+  "epochs_run": 6,
+  "initial_state_sha256": "80387fa46b05f4097a24b3cac803afff768845c786ac093326db55c17de88291",
+  "saved_state_sha256": "6ae28701b93d806b08294db0a574024bc5b464e70c4952cc7c493da724a87d08",
+  "initialization": "fresh random initialization with seed 42",
+  "optimizer_initial_state_entries": 0,
+  "seed": 42
+}

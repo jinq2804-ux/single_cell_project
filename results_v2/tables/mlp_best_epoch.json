@@ -1,0 +1,18 @@
+{
+  "best_epoch": 5,
+  "best_validation_loss": 0.5263797044754028,
+  "epochs_run": 10,
+  "max_epochs": 60,
+  "patience": 5,
+  "min_delta": 0.0001,
+  "early_stopped": true,
+  "stop_reason": "patience_exhausted",
+  "epochs_without_improvement": 5,
+  "n_train": 420,
+  "n_validation": 105,
+  "seed": 42,
+  "checkpoint_rule": "absolute minimum validation_loss",
+  "patience_rule": "validation_loss < stopping_reference - min_delta",
+  "validation_accuracy_at_best": 0.8,
+  "validation_macro_f1_at_best": 0.6305510152192074
+}

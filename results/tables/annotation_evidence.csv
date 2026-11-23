@@ -1,0 +1,57 @@
+leiden,candidate,score,support,eligible
+0,CD4-like T,0.8524486422538757,IL7R;LTB;CCR7;MAL;CD3D,True
+0,CD8-like T,0.33943191170692444,CD8B;CD3D,True
+0,NK,0.0,,False
+0,B,0.0,,False
+0,CD14-like monocyte,0.0,,False
+0,FCGR3A-like monocyte,0.0,,False
+0,Dendritic-like,0.0,,False
+0,Platelet-like,0.0,,False
+1,CD4-like T,0.18804048001766205,LTB,False
+1,CD8-like T,0.0,,False
+1,NK,0.0,,False
+1,B,2.6009328365325928,MS4A1;CD79A;CD79B;CD74;HLA-DRA,True
+1,CD14-like monocyte,0.0,,False
+1,FCGR3A-like monocyte,0.0,,False
+1,Dendritic-like,0.5468112826347351,HLA-DPA1,False
+1,Platelet-like,0.0,,False
+2,CD4-like T,0.0,,False
+2,CD8-like T,0.0,,False
+2,NK,0.0,,False
+2,B,0.5988907217979431,CD79B;CD74;HLA-DRA,True
+2,CD14-like monocyte,0.9868232607841492,LYZ;S100A8;S100A9;FCN1,True
+2,FCGR3A-like monocyte,2.2584431171417236,FCGR3A;MS4A7;LST1;IFITM3;CST3,True
+2,Dendritic-like,0.4337978959083557,HLA-DPA1,False
+2,Platelet-like,0.0,,False
+3,CD4-like T,0.0,,False
+3,CD8-like T,0.34221673011779785,CCL5,False
+3,NK,3.0688886642456055,NKG7;GNLY;KLRD1;PRF1;GZMB,True
+3,B,0.0,,False
+3,CD14-like monocyte,0.0,,False
+3,FCGR3A-like monocyte,0.3610781133174896,FCGR3A,False
+3,Dendritic-like,0.0,,False
+3,Platelet-like,0.0,,False
+4,CD4-like T,0.2625889778137207,IL7R;CD3D,True
+4,CD8-like T,1.194705605506897,CD8A;CD8B;CD3D;CCL5,True
+4,NK,0.9423965215682983,NKG7;GNLY;KLRD1;PRF1;GZMB,True
+4,B,0.0,,False
+4,CD14-like monocyte,0.0,,False
+4,FCGR3A-like monocyte,0.0,,False
+4,Dendritic-like,0.0,,False
+4,Platelet-like,0.0,,False
+5,CD4-like T,0.0,,False
+5,CD8-like T,0.0,,False
+5,NK,0.0,,False
+5,B,0.4897085130214691,CD74;HLA-DRA,False
+5,CD14-like monocyte,3.2023003101348877,LYZ;CD14;S100A8;S100A9;FCN1,True
+5,FCGR3A-like monocyte,1.3382476568222046,MS4A7;LST1;IFITM3;CST3,True
+5,Dendritic-like,0.18997293710708618,HLA-DPA1,False
+5,Platelet-like,0.0,,False
+6,CD4-like T,0.0,,False
+6,CD8-like T,0.0,,False
+6,NK,0.0,,False
+6,B,1.080211877822876,CD74;HLA-DRA,False
+6,CD14-like monocyte,0.8769685626029968,LYZ;S100A9;FCN1,True
+6,FCGR3A-like monocyte,1.0893844366073608,LST1;IFITM3;CST3,False
+6,Dendritic-like,1.9303336143493652,FCER1A;CD1C;CLEC10A;HLA-DPA1,True
+6,Platelet-like,0.0,,False

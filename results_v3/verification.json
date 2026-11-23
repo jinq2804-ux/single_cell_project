@@ -1,0 +1,23 @@
+{
+  "checks_passed": [
+    "Original CSV fixes the 525/175 split without a new outer random split",
+    "The final train and test sets are disjoint and all models share the original test order",
+    "All final models use 525 cells; final LR/MLP scalers fitted on exactly those cells",
+    "Selection/control scalers fitted on the same 420 cells",
+    "All 10 classes occur in selection train, validation and test subsets",
+    "The best epoch is the minimum observed validation loss; patience reproduced from the log",
+    "Final refit length equals selected epoch; optimizer starts with empty state",
+    "Fresh initialization and 525-cell training replay reproduce final checkpoint tensors exactly",
+    "A/B initial states, batch orders, weights and metrics match through the early stopping prefix",
+    "Metrics and confusion matrices reproduced from saved test predictions",
+    "A/B validation losses correspond to their actual saved epochs; test metrics match predictions",
+    "v1/v2/v3 comparison values match their original CSV files",
+    "All 73 files in original results and results_v2 retain their SHA-256 hashes"
+  ],
+  "best_epoch": 6,
+  "final_epochs": 6,
+  "selection_epochs": 11,
+  "controlled_prefix_epochs": 11,
+  "original_result_files_verified": 73,
+  "verification_test_forward_passes": 0
+}

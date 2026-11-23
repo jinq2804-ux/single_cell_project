@@ -1,0 +1,21 @@
+{
+  "stage": "selection",
+  "n_train": 420,
+  "n_validation": 105,
+  "best_epoch": 6,
+  "best_validation_loss": 0.47585660219192505,
+  "saved_epoch": 6,
+  "epochs_run": 11,
+  "max_epochs": 60,
+  "patience": 5,
+  "min_delta": 0.0001,
+  "early_stopped": true,
+  "checkpoint_rule": "absolute minimum validation_loss",
+  "patience_rule": "validation_loss < stopping_reference - min_delta",
+  "initial_state_sha256": "80387fa46b05f4097a24b3cac803afff768845c786ac093326db55c17de88291",
+  "saved_state_sha256": "48a46cfe890ef8a9da96805f6ca643e5d951e043a687150506a90819c53937ab",
+  "seed": 42,
+  "validation_loss_at_saved_epoch": 0.47585660219192505,
+  "validation_accuracy_at_saved_epoch": 0.8571428571428571,
+  "validation_macro_f1_at_saved_epoch": 0.7462378809616974
+}

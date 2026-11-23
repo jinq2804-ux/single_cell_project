@@ -1,0 +1,8 @@
+{
+  "test_loss": 0.4573330283164978,
+  "test_accuracy": 0.84,
+  "test_macro_f1": 0.6754568535478025,
+  "n_test": 175,
+  "test_forward_passes": 1,
+  "checkpoint": "models/mlp.pt"
+}

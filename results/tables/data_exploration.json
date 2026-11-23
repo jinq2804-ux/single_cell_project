@@ -1,0 +1,34 @@
+{
+  "shape": [
+    2700,
+    32738
+  ],
+  "matrix_type": "csr_matrix",
+  "nonzero_entries": 2286884,
+  "zero_fraction": 0.9741281057464086,
+  "first_cell_ids": [
+    "AAACATACAACCAC-1",
+    "AAACATTGAGCTAC-1",
+    "AAACATTGATCAGC-1",
+    "AAACCGTGCTTCCG-1",
+    "AAACCGTGTATGCG-1",
+    "AAACGCACTGGTAC-1",
+    "AAACGCTGACCAGT-1",
+    "AAACGCTGGTTCTT-1"
+  ],
+  "first_genes": [
+    "MIR1302-10",
+    "FAM138A",
+    "OR4F5",
+    "RP11-34P13.7",
+    "RP11-34P13.8",
+    "AL627309.1",
+    "RP11-34P13.14",
+    "RP11-34P13.9"
+  ],
+  "obs_columns": [],
+  "var_columns": [
+    "gene_ids"
+  ],
+  "obsm_keys": []
+}

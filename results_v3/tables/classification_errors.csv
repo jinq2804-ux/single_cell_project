@@ -1,0 +1,31 @@
+model,true_label,prediction,cells
+Logistic Regression,Dendritic,CD14+ Monocyte,5
+Logistic Regression,CD14+ Monocyte,Dendritic,4
+Logistic Regression,CD4+/CD45RO+ Memory,CD4+/CD25 T Reg,4
+Logistic Regression,CD4+/CD45RA+/CD25- Naive T,CD4+/CD25 T Reg,2
+Logistic Regression,CD56+ NK,CD8+ Cytotoxic T,2
+Logistic Regression,CD8+ Cytotoxic T,CD4+/CD25 T Reg,2
+Logistic Regression,CD8+/CD45RA+ Naive Cytotoxic,CD4+/CD25 T Reg,2
+Logistic Regression,CD19+ B,CD4+/CD25 T Reg,1
+Logistic Regression,CD8+ Cytotoxic T,CD14+ Monocyte,1
+Logistic Regression,CD8+/CD45RA+ Naive Cytotoxic,CD8+ Cytotoxic T,1
+MLP,Dendritic,CD14+ Monocyte,6
+MLP,CD8+/CD45RA+ Naive Cytotoxic,CD4+/CD25 T Reg,4
+MLP,CD14+ Monocyte,Dendritic,3
+MLP,CD4+/CD45RO+ Memory,CD4+/CD25 T Reg,3
+MLP,CD56+ NK,CD8+ Cytotoxic T,3
+MLP,CD19+ B,CD4+/CD25 T Reg,1
+MLP,CD4+/CD25 T Reg,CD4+/CD45RO+ Memory,1
+MLP,CD4+/CD45RA+/CD25- Naive T,CD4+/CD25 T Reg,1
+MLP,CD4+/CD45RA+/CD25- Naive T,CD4+/CD45RO+ Memory,1
+MLP,CD8+ Cytotoxic T,CD14+ Monocyte,1
+MLP,CD8+/CD45RA+ Naive Cytotoxic,CD8+ Cytotoxic T,1
+Random Forest,Dendritic,CD14+ Monocyte,9
+Random Forest,CD4+/CD45RO+ Memory,CD4+/CD25 T Reg,5
+Random Forest,CD8+/CD45RA+ Naive Cytotoxic,CD4+/CD25 T Reg,4
+Random Forest,CD8+ Cytotoxic T,CD4+/CD25 T Reg,3
+Random Forest,CD4+/CD45RA+/CD25- Naive T,CD4+/CD25 T Reg,2
+Random Forest,CD56+ NK,CD8+ Cytotoxic T,2
+Random Forest,CD8+ Cytotoxic T,CD56+ NK,2
+Random Forest,CD8+ Cytotoxic T,CD14+ Monocyte,1
+Random Forest,CD8+/CD45RA+ Naive Cytotoxic,CD8+ Cytotoxic T,1

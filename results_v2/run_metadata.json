@@ -1,0 +1,13 @@
+{
+  "python_path": "/opt/miniconda3/envs/ai4sci/bin/python",
+  "seed": 42,
+  "elapsed_seconds": 3.107,
+  "packages": {
+    "scanpy": "1.11.5",
+    "torch": "2.15.0",
+    "numpy": "2.4.6",
+    "scikit-learn": "1.9.1",
+    "pandas": "2.3.3",
+    "joblib": "1.6.0"
+  }
+}

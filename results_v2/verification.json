@@ -1,0 +1,12 @@
+{
+  "checks_passed": [
+    "Original 175 test cells and test order unchanged",
+    "420/105/175 disjoint split; all 10 classes present in each subset",
+    "MLP and Logistic Regression scalers fitted on exactly the 420 training cells",
+    "Patience rule reproduced from epoch log; stopped at epoch 10",
+    "Checkpoint corresponds to epoch 5 and reproduces its validation loss and accuracy",
+    "Test metrics reproduced from saved predictions without another test forward pass",
+    "All three confusion matrices contain 175 test cells",
+    "All 46 original result files unchanged by SHA-256"
+  ]
+}

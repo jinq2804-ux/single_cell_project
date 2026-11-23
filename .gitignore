@@ -1,0 +1,18 @@
+# Local dependencies and runtime caches
+.local-deps/
+.cache/
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+venv/
+.env
+.env.*
+*.pem
+*.key
+
+# Independent reruns can be regenerated
+results_recheck/
+results_*recheck*/
+results_demo/
+results_full_recheck/

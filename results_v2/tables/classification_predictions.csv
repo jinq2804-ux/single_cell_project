@@ -1,0 +1,176 @@
+cell_id,true_label,Logistic Regression,Random Forest,MLP
+ACCCGTACCTCGAA-4,Dendritic,Dendritic,Dendritic,Dendritic
+AGATATTGACCACA-1,CD4+/CD45RO+ Memory,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+ACTTGGGAACCAGT-1,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+GATTTAGAGCCCTT-3,Dendritic,Dendritic,Dendritic,Dendritic
+CTCAGCACGCTTCC-1,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+AGTACGTGTACGCA-8,CD56+ NK,CD56+ NK,CD56+ NK,CD56+ NK
+TGCAACGACTTGGA-7,Dendritic,Dendritic,Dendritic,Dendritic
+CGATCCACACCATG-3,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+ACGTGCCTTGACTG-4,Dendritic,Dendritic,Dendritic,Dendritic
+GTAAGCACAAGAAC-6,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+ACCGCGGACTACCC-8,CD8+/CD45RA+ Naive Cytotoxic,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD8+ Cytotoxic T
+ACTTCTGAATTCTC-8,CD4+/CD45RO+ Memory,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+CATAAATGTGACCA-4,Dendritic,Dendritic,Dendritic,Dendritic
+CTTCACCTGTCTAG-4,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+ACTCGAGAAGCATC-2,CD56+ NK,CD56+ NK,CD56+ NK,CD56+ NK
+CACTTTGACTCAAG-5,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD8+ Cytotoxic T
+ACGACAACAGCTCA-2,Dendritic,Dendritic,Dendritic,Dendritic
+TGTGACGAGGTTCA-5,Dendritic,Dendritic,Dendritic,Dendritic
+GAACGGGACCACAA-7,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+TACGCAGATGGTTG-8,CD56+ NK,CD56+ NK,CD8+ Cytotoxic T,CD8+ Cytotoxic T
+ATAGAACTTTACCT-2,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+AATCTCACTCAGTG-3,CD4+/CD45RO+ Memory,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+AGCTGTGAAGCAAA-5,Dendritic,Dendritic,Dendritic,Dendritic
+TATCAGCTATGTCG-5,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,Dendritic
+TTGAATGAATACCG-6,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+GAAGAATGATTCGG-1,CD8+/CD45RA+ Naive Cytotoxic,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+TAAGAGGAACTGGT-1,Dendritic,Dendritic,Dendritic,Dendritic
+GTTCATACCTACCC-3,Dendritic,Dendritic,Dendritic,Dendritic
+TAGAGAGATCGTGA-5,Dendritic,Dendritic,Dendritic,Dendritic
+ATTTCTCTTGCACA-6,Dendritic,Dendritic,Dendritic,Dendritic
+GCAACCCTACGTAC-1,Dendritic,Dendritic,Dendritic,Dendritic
+GTCCAGCTGAACCT-8,Dendritic,Dendritic,Dendritic,Dendritic
+TAGCCCTGGAGGAC-8,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD8+ Cytotoxic T
+CCCTACGACCAACA-1,CD8+ Cytotoxic T,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD8+ Cytotoxic T
+TATGGTCTGGCAAG-1,Dendritic,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+CGCAGGTGACGTAC-6,CD8+/CD45RA+ Naive Cytotoxic,CD8+/CD45RA+ Naive Cytotoxic,CD4+/CD25 T Reg,CD8+/CD45RA+ Naive Cytotoxic
+TCAATAGATCTCGC-3,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD56+ NK,CD8+ Cytotoxic T
+ACGTTGGAAACGAA-8,Dendritic,Dendritic,Dendritic,Dendritic
+TCTAACACAACCGT-4,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+GATCTACTAGCCAT-8,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+CAATCGGAGTTGAC-8,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+CACCGGGAGATAAG-3,Dendritic,Dendritic,Dendritic,Dendritic
+TACGAGTGTATTCC-3,Dendritic,Dendritic,Dendritic,Dendritic
+TCAATCACCATGCA-7,CD8+/CD45RA+ Naive Cytotoxic,CD8+/CD45RA+ Naive Cytotoxic,CD8+/CD45RA+ Naive Cytotoxic,CD8+/CD45RA+ Naive Cytotoxic
+CAACGATGCACTGA-7,Dendritic,Dendritic,Dendritic,Dendritic
+TGGCACCTCCAACA-8,Dendritic,Dendritic,Dendritic,Dendritic
+GATGACACCAGATC-4,CD4+/CD45RA+/CD25- Naive T,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+AAATTCGATGCACA-1,Dendritic,Dendritic,CD14+ Monocyte,Dendritic
+TAGAGCACCCTCAC-4,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+TCGTAGGACCCTTG-1,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+AGGACTTGTTTCTG-2,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+ACGTAGACATCGAC-8,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+GTTGGATGTTTGTC-3,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD4+/CD25 T Reg,CD8+ Cytotoxic T
+CATTGGGACTTGGA-2,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+ATGAGAGAATCTCT-4,CD56+ NK,CD56+ NK,CD56+ NK,CD56+ NK
+TCTCCACTGGGAGT-1,CD8+/CD45RA+ Naive Cytotoxic,CD8+/CD45RA+ Naive Cytotoxic,CD8+/CD45RA+ Naive Cytotoxic,CD8+/CD45RA+ Naive Cytotoxic
+ACCCTCGAGTGAGG-1,Dendritic,Dendritic,Dendritic,Dendritic
+TAACTCACTGGAGG-8,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+GCAATTCTAACGAA-8,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+AAGCCAACTACGCA-3,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+ATACCTACTGAACC-7,Dendritic,Dendritic,Dendritic,Dendritic
+CGAGGCACCCACCT-2,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+ATGGACACAAGTGA-1,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+ACACGAACGGAGTG-1,Dendritic,Dendritic,Dendritic,Dendritic
+TGACCGCTGAACCT-7,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+GCACGGACTTTGCT-1,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+GCACGTCTGCAAGG-8,Dendritic,Dendritic,Dendritic,Dendritic
+GACGTCCTAAGGCG-1,CD56+ NK,CD56+ NK,CD56+ NK,CD8+ Cytotoxic T
+GAGAGGTGGATACC-5,CD8+ Cytotoxic T,CD4+/CD25 T Reg,CD8+ Cytotoxic T,CD4+/CD25 T Reg
+AGGTTCGAATGCCA-7,CD34+,CD34+,CD34+,CD34+
+ACGGAACTAGTCGT-7,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+AGCGGGCTCCTGAA-3,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+GGATAGCTTTCTTG-5,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+CAGATGACATGTCG-1,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+GAACCAACTTCGGA-8,CD14+ Monocyte,Dendritic,CD14+ Monocyte,Dendritic
+GTAGTGTGTCAAGC-8,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+AAGTAACTACGCAT-2,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+GTGTAGTGGAATAG-5,Dendritic,Dendritic,Dendritic,Dendritic
+GCGCACGAAGCACT-6,Dendritic,Dendritic,Dendritic,Dendritic
+GCGAAGGAAAGAAC-8,CD34+,CD34+,CD34+,CD34+
+AAATCATGTTGGTG-6,Dendritic,Dendritic,Dendritic,Dendritic
+TGGAAAGATGGCAT-2,CD8+/CD45RA+ Naive Cytotoxic,CD8+/CD45RA+ Naive Cytotoxic,CD4+/CD25 T Reg,CD8+/CD45RA+ Naive Cytotoxic
+CTACGCACAGGGTG-3,CD4+/CD45RO+ Memory,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+ATGTTCACGTACGT-6,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+AACACTCTTCCCGT-2,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+GGGATTACGTTGGT-4,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+GAGCATACTGTCAG-3,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+GATTCTACGCTAAC-7,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+ACTGGCCTCGAATC-8,Dendritic,Dendritic,CD14+ Monocyte,Dendritic
+GGCTAAACCTGGAT-8,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+CATCCCGATCTCAT-1,Dendritic,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+TATGTGCTGTAGGG-7,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+TAGTTCACAAGGCG-1,Dendritic,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+AGACCTGAGACGTT-4,Dendritic,Dendritic,Dendritic,Dendritic
+CTTTAGTGCTCTTA-5,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD56+ NK,CD8+ Cytotoxic T
+CAGTTTACCACAAC-7,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,Dendritic
+CACAGATGCCGATA-6,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+AATAAGCTTGGTGT-6,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+AGTTAAACAAACAG-1,CD19+ B,CD4+/CD25 T Reg,CD19+ B,CD4+/CD25 T Reg
+TAGGTTCTGACACT-3,Dendritic,Dendritic,Dendritic,Dendritic
+TAAGCTCTTCTGGA-4,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+CATGTACTCCTTGC-8,Dendritic,Dendritic,Dendritic,Dendritic
+GACCATGATACGCA-6,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+CCGCTATGGCGGAA-7,Dendritic,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+TCACAACTGTGTCA-6,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+GATAAGGATGTCAG-5,Dendritic,Dendritic,Dendritic,Dendritic
+TGATAAACCAACTG-6,Dendritic,Dendritic,CD14+ Monocyte,Dendritic
+GGACGCTGCACACA-8,Dendritic,Dendritic,Dendritic,Dendritic
+CAAATATGTGCATG-6,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+AACACTCTCCTGAA-3,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+TGTTACTGCCGTAA-7,Dendritic,Dendritic,Dendritic,Dendritic
+ATCACGGATAACGC-8,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+TTTCAGTGTCACGA-4,CD14+ Monocyte,Dendritic,CD14+ Monocyte,CD14+ Monocyte
+CGACCTACTTCAGG-4,CD4+/CD45RO+ Memory,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+TAAGGGCTTATTCC-7,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+CATATAGATGGTTG-4,Dendritic,Dendritic,Dendritic,Dendritic
+TTGTAGCTCAAAGA-6,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD8+ Cytotoxic T
+GGAAGGACGCGAAG-4,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+CTTTGATGTGTCAG-8,CD56+ NK,CD8+ Cytotoxic T,CD56+ NK,CD8+ Cytotoxic T
+AGCCTCACACGCAT-7,Dendritic,Dendritic,Dendritic,Dendritic
+ATAGTTGATGAGGG-5,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+CCAAGAACATGCCA-1,Dendritic,Dendritic,Dendritic,Dendritic
+CTAGGTGACCGCTT-3,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+ATAACAACCTCTAT-1,CD14+ Monocyte,Dendritic,CD14+ Monocyte,CD14+ Monocyte
+CTAGGTGATACGAC-1,CD8+/CD45RA+ Naive Cytotoxic,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+ACAGTTCTTAGCCA-1,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+CACCCATGTGCGTA-6,Dendritic,Dendritic,Dendritic,Dendritic
+GGTACTGAACCCAA-1,Dendritic,Dendritic,Dendritic,Dendritic
+ACTGCCACTCTCCG-7,Dendritic,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+TGGACCCTCAGCTA-5,CD56+ NK,CD8+ Cytotoxic T,CD56+ NK,CD56+ NK
+CGGCACGAAGCTCA-4,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD8+ Cytotoxic T
+CTAAACCTCACTCC-5,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+AGTGACACCAGTTG-8,Dendritic,Dendritic,Dendritic,CD14+ Monocyte
+CGTACCACAAGAAC-6,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD8+ Cytotoxic T
+CCTCGAACGTAAGA-3,CD8+ Cytotoxic T,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+TGCAACGAATTGGC-3,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+CTTACATGTTCACT-5,Dendritic,Dendritic,Dendritic,Dendritic
+AACACTCTTGAAGA-4,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+GAAAGATGCCACAA-3,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+AGCCTCACCCTTGC-4,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+ATAGCCGACATTCT-5,CD34+,CD34+,CD34+,CD34+
+CTACAACTTGTTTC-8,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+AGTGACTGTGTGGT-7,Dendritic,Dendritic,Dendritic,CD8+/CD45RA+ Naive Cytotoxic
+TGCCAAGATTGTGG-7,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD8+ Cytotoxic T
+AACATATGCTTCCG-8,Dendritic,Dendritic,Dendritic,Dendritic
+TATCTGACCGATAC-6,Dendritic,Dendritic,Dendritic,Dendritic
+CGATCCACGAGATA-7,Dendritic,Dendritic,Dendritic,Dendritic
+AACACGTGGTCTTT-1,CD56+ NK,CD56+ NK,CD56+ NK,CD56+ NK
+TCCTATGACATGCA-6,Dendritic,Dendritic,Dendritic,Dendritic
+TCGAATCTTTCTCA-6,CD8+/CD45RA+ Naive Cytotoxic,CD4+/CD25 T Reg,CD8+/CD45RA+ Naive Cytotoxic,CD4+/CD25 T Reg
+TCATTGACACTTTC-2,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+GGAATCTGCGACTA-1,Dendritic,Dendritic,Dendritic,Dendritic
+GGACGCACGTTTGG-3,Dendritic,Dendritic,Dendritic,Dendritic
+GGAAGGTGACGCAT-8,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD8+ Cytotoxic T,CD8+ Cytotoxic T
+GTAGCTGAGGAACG-8,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+CATGTTTGCTATTC-7,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+ATTCGGGATAACGC-5,Dendritic,Dendritic,Dendritic,Dendritic
+GGTATCGACTCGAA-1,Dendritic,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+TACTCTGACGTTGA-4,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+TATAGCCTTTCAGG-8,CD8+/CD45RA+ Naive Cytotoxic,CD8+/CD45RA+ Naive Cytotoxic,CD8+/CD45RA+ Naive Cytotoxic,CD8+/CD45RA+ Naive Cytotoxic
+GCCGACGACCTTCG-1,CD8+/CD45RA+ Naive Cytotoxic,CD8+/CD45RA+ Naive Cytotoxic,CD4+/CD25 T Reg,CD8+/CD45RA+ Naive Cytotoxic
+ACGTCGCTCGTTGA-4,CD8+/CD45RA+ Naive Cytotoxic,CD8+/CD45RA+ Naive Cytotoxic,CD8+/CD45RA+ Naive Cytotoxic,CD8+/CD45RA+ Naive Cytotoxic
+GTAGCCCTACGACT-8,CD4+/CD45RA+/CD25- Naive T,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+CGGCGATGCGGTAT-7,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+ATCTACACTCTCTA-7,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+TGATTCTGACACCA-6,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+CCGGAGACTGCTTT-8,Dendritic,Dendritic,Dendritic,Dendritic
+CAGTCAGAAAGGCG-7,CD14+ Monocyte,Dendritic,CD14+ Monocyte,CD14+ Monocyte
+AAATTCGAAGTCTG-5,CD19+ B,CD19+ B,CD19+ B,CD19+ B
+CAAGGACTAAGGTA-5,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+CCAATGGAACTGTG-2,Dendritic,Dendritic,Dendritic,Dendritic
+GCAGCTCTGGGAGT-6,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte,CD14+ Monocyte
+TAGAAACTTAGAAG-1,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg,CD4+/CD25 T Reg
+CATCAGGATGCAGT-6,Dendritic,Dendritic,Dendritic,Dendritic
+TGTGAGACTTTACC-6,Dendritic,Dendritic,Dendritic,Dendritic
