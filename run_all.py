@@ -18,7 +18,7 @@ STAGES = [
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=ROOT / "results_v3")
+    parser.add_argument("--output", type=Path, default=ROOT / "results_matched")
     parser.add_argument("--pbmc3k-only", action="store_true", help="Run stages 1–5")
     args = parser.parse_args()
     output = args.output.resolve()

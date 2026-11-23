@@ -1,0 +1,11 @@
+true_label,train,validation,test
+CD14+ Monocyte,78,19,32
+CD19+ B,57,14,24
+CD34+,8,2,3
+CD4+/CD25 T Reg,41,10,17
+CD4+/CD45RA+/CD25- Naive T,5,1,2
+CD4+/CD45RO+ Memory,11,3,5
+CD56+ NK,18,5,8
+CD8+ Cytotoxic T,33,8,13
+CD8+/CD45RA+ Naive Cytotoxic,25,7,11
+Dendritic,144,36,60

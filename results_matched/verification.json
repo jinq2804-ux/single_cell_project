@@ -1,0 +1,19 @@
+{
+  "fresh_runs": true,
+  "v1_epochs": 60,
+  "v3_epochs_run": 11,
+  "v3_saved_epoch": 6,
+  "equal_prefix_epochs": 11,
+  "matched_split": [
+    420,
+    105,
+    175
+  ],
+  "scalers_fit_on_420": true,
+  "same_initialization_and_batch_order": true,
+  "restored_checkpoint_validation_losses_verified": true,
+  "test_order_matches_original": true,
+  "test_metrics_recomputed_from_predictions": true,
+  "LR_RF_identical_across_versions": true,
+  "legacy_results_hashes_unchanged": true
+}

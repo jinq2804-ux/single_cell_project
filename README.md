@@ -4,7 +4,34 @@ AI4Science · Single-cell RNA-seq Analysis and Cell Type Annotation
 
 本项目在 Apple Silicon CPU 上完成 PBMC3k 的质量控制、降维、Leiden 聚类和标记基因注释，并在 PBMC68k Reduced 上比较 Logistic Regression、Random Forest 和 PyTorch MLP。仓库保存三个版本的真实实验结果，包括预测表、模型参数、图表和中文学习文档。
 
-## 最新实验结果
+## 当前主实验 v1 与 v3 相同条件重跑
+
+本次重新执行的主实验位于 [results_matched](results_matched)。
+这里的 v1 和 v3 均使用相同的 420 个训练细胞、105 个验证细胞和 175 个测试细胞，
+两组都记录训练及验证 Loss、验证 Accuracy 和验证 Macro-F1。
+MLP 网络、Scaler、随机初始化、Adam、学习率、批大小、数据顺序均一致，
+唯一改变的因素为训练停止与保存轮次策略。
+
+| 当前实验 | 训练/验证/测试 | 实际训练轮数 | 使用的轮次 | Validation Loss | Test Accuracy | Test Macro-F1 |
+|---|---|---:|---:|---:|---:|---:|
+| v1 固定轮数基线 | 420/105/175 | 60 | 60 | 0.619694 | 86.29% | 0.730546 |
+| v3 Early Stopping | 420/105/175 | 11 | 6 | 0.475857 | 85.71% | 0.734767 |
+
+本次为实际重新运行。两组前 11 轮的批次顺序、模型参数哈希和指标均逐轮一致，
+保存权重重新加载后验证 Loss 与日志匹配。Logistic Regression 和 Random Forest
+在两组中同样使用共同 420 个训练细胞，并具有相同模型与预测。
+[实验说明](results_matched/实验结果说明.md)、
+[MLP 指标](results_matched/mlp_comparison.csv)、
+[全部模型](results_matched/comparison.csv)和
+[核验记录](results_matched/verification.json)均随仓库保存。
+
+![当前主实验训练与验证曲线](results_matched/training_loss_comparison.png)
+
+历史 results、results_v2、results_v3 是此前的真实记录。
+当前重新实验的 v1/v3 分别位于 results_matched/v1 和 results_matched/v3，
+评估早停策略请使用本节共同条件的结果。
+
+## 历史两阶段实验结果
 
 PBMC3k 从 2,700 × 32,738 的计数矩阵出发，质控后保留 2,641 个细胞、13,602 个基因，分出 7 个群。一个群体保留为 Uncertain。
 
@@ -38,10 +65,10 @@ conda run -n ai4sci python -m pip install -r requirements.txt
 conda run -n ai4sci python -m pip install --target .local-deps -r requirements.txt
 ```
 
-仅复现最新版分类实验，包括两阶段训练和严格 Early Stopping 对照
+复现当前 v1/v3 相同条件实验
 
 ```bash
-conda run -n ai4sci python src/06_cell_classification.py --output results_v3_recheck
+conda run -n ai4sci python src/06_cell_classification.py --output results_matched_recheck
 ```
 
 从 PBMC3k 开始复现完整流程
@@ -50,7 +77,7 @@ conda run -n ai4sci python src/06_cell_classification.py --output results_v3_rec
 conda run -n ai4sci python run_all.py --output results_full_recheck
 ```
 
-请使用一个尚未保存分类结果的新输出目录。仓库已附带 results、results_v2 和 results_v3，脚本会保护原结果并检查目标目录。v3 分类会读取原始 results 中的划分表和测试顺序，运行时请保留这些文件。原始 PBMC3k 缓存已放在 data，PBMC68k Reduced 由 Scanpy 随包提供。
+请使用一个尚未保存分类结果的新输出目录。仓库已附带 results、results_v2 和 results_v3，脚本会保护原结果并检查目标目录。分类实验会读取原始 results 中的划分表和测试顺序，运行时请保留这些文件。原始 PBMC3k 缓存已放在 data，PBMC68k Reduced 由 Scanpy 随包提供。
 
 第 06 部分 v3 在本机实测 5.181 秒，含三模型训练、严格对照、评估与绘图。早期 v1 完整流程实测 28.21 秒，另一次复跑为 63.49 秒。以上均不含依赖安装和 Word 文档生成，其他机器的耗时会变化。
 
@@ -60,22 +87,23 @@ conda run -n ai4sci python run_all.py --output results_full_recheck
 |---|---|
 | data/pbmc3k_raw.h5ad | PBMC3k 原始计数缓存 |
 | src/01_data_exploration.py 至 05_cell_annotation.py | 数据探索、QC、预处理、聚类和多基因注释 |
-| src/06_cell_classification.py | 当前 v3 两阶段分类实验及严格 Early Stopping 对照 |
+| src/06_cell_classification.py | 默认执行相同条件的 v1/v3 实验，--protocol two-stage 执行历史两阶段协议 |
 | src/*.md | 项目学习笔记 |
 | run_all.py | 六阶段统一入口 |
 | test_data.py | 原始数据探索脚本 |
 | results/ | v1 单细胞分析与固定 60 轮分类结果 |
 | results_v2/ | 420/105 验证集与 Early Stopping 实验 |
-| results_v3/ | 选轮后用全部 525 个细胞重训的最新结果 |
+| results_v3/ | 历史两阶段实验，选轮后用 525 个细胞重训 |
+| results_matched/ | 当前重新运行的相同条件 v1/v3 主实验 |
 | results_v3/early_stopping_control/ | 固定 420 个训练细胞的 A/B 轮数策略对照 |
 | results_review/ | 图表学习笔记 |
 | docs/ | 中文实验报告、学习手册、导师汇报提纲与 scGPT 专题 |
 
 每个结果目录中的 figures 保存 PNG，tables 保存逐细胞划分、预测、混淆矩阵和指标，models 保存权重及基因、类别顺序。results/pbmc3k_processed.h5ad 保存原始计数层、对数表达、PCA、邻接图、UMAP 和注释。
 
-## 怎样查看只改变早停策略的实验
+## 历史独立 A/B 对照
 
-要评价早停策略，请查看 [严格 A/B 对照](results_v3/early_stopping_control/metrics.csv)。
+此前单独执行的结果保存在 [严格 A/B 对照](results_v3/early_stopping_control/metrics.csv)。
 A 和 B 都有相同的 420 个训练细胞、105 个验证细胞和 175 个测试细胞。
 A 每轮也记录验证指标，但固定采用第 60 轮参数。B 用验证 Loss 触发早停并恢复最低 Loss 的参数。
 两者的网络、优化器、初始化和批次顺序相同，共同训练前缀已经逐轮核对。

@@ -1,0 +1,11 @@
+true_label,CD14+ Monocyte,CD19+ B,CD34+,CD4+/CD25 T Reg,CD4+/CD45RA+/CD25- Naive T,CD4+/CD45RO+ Memory,CD56+ NK,CD8+ Cytotoxic T,CD8+/CD45RA+ Naive Cytotoxic,Dendritic
+CD14+ Monocyte,32,0,0,0,0,0,0,0,0,0
+CD19+ B,0,24,0,0,0,0,0,0,0,0
+CD34+,0,0,3,0,0,0,0,0,0,0
+CD4+/CD25 T Reg,0,0,0,17,0,0,0,0,0,0
+CD4+/CD45RA+/CD25- Naive T,0,0,0,2,0,0,0,0,0,0
+CD4+/CD45RO+ Memory,0,0,0,5,0,0,0,0,0,0
+CD56+ NK,0,0,0,0,0,0,6,2,0,0
+CD8+ Cytotoxic T,1,0,0,3,0,0,2,7,0,0
+CD8+/CD45RA+ Naive Cytotoxic,0,0,0,8,0,0,0,1,2,0
+Dendritic,10,0,0,0,0,0,0,0,0,50

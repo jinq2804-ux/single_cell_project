@@ -1,0 +1,19 @@
+{
+  "python_path": "/opt/miniconda3/envs/ai4sci/bin/python",
+  "seed": 42,
+  "device": "cpu",
+  "torch_threads": 2,
+  "protocol": "matched",
+  "elapsed_seconds": 35.43,
+  "learning_rate": 0.001,
+  "weight_decay": 0.0001,
+  "batch_size": 32,
+  "packages": {
+    "scanpy": "1.11.5",
+    "torch": "2.15.0",
+    "numpy": "2.4.6",
+    "scikit-learn": "1.9.1",
+    "pandas": "2.3.3",
+    "joblib": "1.6.0"
+  }
+}

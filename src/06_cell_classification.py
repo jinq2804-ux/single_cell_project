@@ -1,4 +1,4 @@
-"""PBMC68k Reduced two-stage classification and a controlled epoch-selection study."""
+"""PBMC68k Reduced matched v1/v3 experiment; optional historical two-stage protocol."""
 import hashlib
 import json
 import os
@@ -232,7 +232,7 @@ def plot_training(selection, final, best_epoch, output):
     save_figure(output, "mlp_final_training_loss", fig)
 
 
-def save_evaluation(predictions, y_test, encoder, test_ids, output):
+def save_evaluation(predictions, y_test, encoder, test_ids, output, train_cells=525):
     table = pd.DataFrame({"cell_id": test_ids, "true_label": encoder.inverse_transform(y_test)})
     classes = np.arange(len(encoder.classes_))
     metrics, errors = [], []
@@ -259,7 +259,7 @@ def save_evaluation(predictions, y_test, encoder, test_ids, output):
                     cbar_kws={"label": "Cells"}, ax=ax)
         ax.tick_params(axis="y", labelrotation=0)
         ax.set(xlabel="Predicted class (1–10, same order as rows)", ylabel="True class",
-               title=f"PBMC68k Reduced · {name} · 525 training cells")
+               title=f"PBMC68k Reduced · {name} · {train_cells} training cells")
         save_figure(output, f"confusion_{slug}", fig)
     table.to_csv(output / "tables" / "classification_predictions.csv", index=False)
     frame = pd.DataFrame(metrics, columns=[
@@ -273,7 +273,7 @@ def save_evaluation(predictions, y_test, encoder, test_ids, output):
         "accuracy": "Accuracy", "macro_precision": "Macro precision",
         "macro_recall": "Macro recall", "macro_f1": "Macro F1",
     }).plot.bar(ax=ax, color=["#237A92", "#D2863F", "#6C6699"], rot=0)
-    ax.set(ylim=(0, 1), ylabel="Score", title="Stage 2 final models · Shared 525/175 split")
+    ax.set(ylim=(0, 1), ylabel="Score", title=f"Final models · Shared {train_cells}/175 split")
     ax.legend(title=None, frameon=False, loc="upper center", ncols=3)
     save_figure(output, "model_comparison", fig)
     return frame
@@ -323,7 +323,7 @@ def markdown_table(frame):
     return "\n".join("| " + " | ".join(row) + " |" for row in rows)
 
 
-def run(adata, root, output):
+def run_two_stage(adata, root, output):
     root, output = Path(root).resolve(), Path(output).resolve()
     for protected in (root / "results", root / "results_v2"):
         if output == protected or protected in output.parents:
@@ -709,18 +709,243 @@ conda run -n ai4sci python src/06_cell_classification.py --output results_v3_rec
     (output / "实验结果说明.md").write_text(text)
 
 
+def run(adata, root, output, protocol="matched"):
+    """Default experiment compares v1/v3 with identical 420/105/175 data."""
+    if protocol == "two-stage":
+        return run_two_stage(adata, root, output)
+    root, output = Path(root).resolve(), Path(output).resolve()
+    for name in ("results", "results_v2", "results_v3"):
+        protected = root / name
+        if output == protected or protected in output.parents:
+            raise ValueError("Use a new results_matched output directory.")
+    if (output / "comparison.csv").exists() or (output / "v1" / "tables" / "mlp_training.csv").exists():
+        raise FileExistsError(f"Choose a fresh output directory: {output}")
+    output.mkdir(parents=True, exist_ok=True)
+    torch.set_num_threads(2)
+    torch.use_deterministic_algorithms(True)
+    data = sc.datasets.pbmc68k_reduced()
+    encoder = LabelEncoder()
+    if data.obs[LABEL_COLUMN].isna().any():
+        raise ValueError("Missing reference labels.")
+    y = encoder.fit_transform(data.obs[LABEL_COLUMN])
+    x = np.asarray(data.X.toarray() if issparse(data.X) else data.X, dtype=np.float32)
+    _, full, train, validation, test = read_splits(data, root, y, encoder)
+    n_classes = len(encoder.classes_)
+    split_rows = []
+    for label, indices in (("train", train), ("validation", validation), ("test", test)):
+        for order, index in enumerate(indices):
+            split_rows.append((data.obs_names[index], encoder.classes_[y[index]], label, order))
+    split = pd.DataFrame(split_rows, columns=["cell_id", "true_label", "split", "order"])
+    split.to_csv(output / "classification_split.csv", index=False)
+    pd.crosstab(split.true_label, split.split).reindex(
+        columns=["train", "validation", "test"]).to_csv(output / "class_counts.csv")
+
+    # Independent executions, each with fresh model/Adam/scaler and reset RNG/loader.
+    fixed, fixed_scaler, fixed_log, fixed_record = fit_selection(
+        x[train], y[train], x[validation], y[validation], n_classes, early_stopping=False)
+    stopped, stopped_scaler, stopped_log, stopped_record = fit_selection(
+        x[train], y[train], x[validation], y[validation], n_classes, early_stopping=True)
+    pd.testing.assert_frame_equal(fixed_log.iloc[:len(stopped_log)], stopped_log)
+    assert fixed_record["initial_state_sha256"] == stopped_record["initial_state_sha256"]
+    np.testing.assert_array_equal(fixed_scaler.mean_, stopped_scaler.mean_)
+    np.testing.assert_array_equal(fixed_scaler.scale_, stopped_scaler.scale_)
+    assert fixed_scaler.n_samples_seen_ == stopped_scaler.n_samples_seen_ == 420
+    assert not np.intersect1d(train, validation).size
+    assert not np.intersect1d(full, test).size
+
+    # These two fixed baselines are shared by v1 and v3, with exactly the same fit data.
+    lr = make_pipeline(StandardScaler(), LogisticRegression(max_iter=2000, random_state=SEED))
+    rf = RandomForestClassifier(n_estimators=300, random_state=SEED, n_jobs=2)
+    lr.fit(x[train], y[train])
+    rf.fit(x[train], y[train])
+    # All training and selection decisions are fixed before the first test prediction.
+    common_predictions = {"Logistic Regression": lr.predict(x[test]), "Random Forest": rf.predict(x[test])}
+    metric_frames, mlp_rows = [], []
+    versions = (
+        ("v1", fixed, fixed_scaler, fixed_log, fixed_record),
+        ("v3", stopped, stopped_scaler, stopped_log, stopped_record),
+    )
+    for version, model, scaler, log, record in versions:
+        directory = output / version
+        for folder in ("tables", "models", "figures"):
+            (directory / folder).mkdir(parents=True, exist_ok=True)
+        log.to_csv(directory / "tables" / "mlp_training.csv", index=False)
+        write_json(directory / "tables" / "mlp_checkpoint.json", record)
+        save_mlp(model, data.n_vars, n_classes, record, directory / "models" / "mlp.pt")
+        dump(scaler, directory / "models" / "mlp_scaler.joblib")
+        dump(lr, directory / "models" / "logistic_regression.joblib")
+        dump(rf, directory / "models" / "random_forest.joblib")
+        write_json(directory / "models" / "feature_label_mapping.json", {
+            "feature_names_in_order": data.var_names.tolist(),
+            "classes_in_order": encoder.classes_.tolist(),
+            "n_train": len(train), "n_validation": len(validation), "n_test": len(test),
+            "seed": SEED,
+        })
+        predictions = dict(common_predictions)
+        predictions["MLP"], test_metrics = evaluate_mlp(model, scaler, x[test], y[test], n_classes)
+        write_json(directory / "tables" / "mlp_test_metrics.json", test_metrics)
+        metrics = save_evaluation(predictions, y[test], encoder, data.obs_names[test], directory, train_cells=420)
+        metrics.insert(0, "version", version)
+        metric_frames.append(metrics)
+        mlp_rows.append({
+            "version": version, "n_train": 420, "n_validation": 105, "n_test": 175,
+            "epochs_run": record["epochs_run"], "model_epoch": record["saved_epoch"],
+            "validation_loss": record["validation_loss_at_saved_epoch"],
+            "validation_accuracy": record["validation_accuracy_at_saved_epoch"],
+            "validation_macro_f1": record["validation_macro_f1_at_saved_epoch"], **test_metrics,
+        })
+        fig, ax = plt.subplots(figsize=(7.2, 4.2), layout="constrained")
+        ax.plot(log.epoch, log.train_loss, label="Training loss", color="#207785")
+        ax.plot(log.epoch, log.validation_loss, label="Validation loss", color="#B75B3E")
+        epoch = record["saved_epoch"]
+        ax.axvline(epoch, color="#66518E", ls="--", label=f"Saved model epoch {epoch}")
+        ax.scatter([epoch], [record["validation_loss_at_saved_epoch"]], color="#66518E")
+        ax.set(xlabel="Epoch", ylabel="Mean cross-entropy", title=f"{version} · Matched 420/105 split")
+        ax.legend(frameon=False)
+        save_figure(directory, "mlp_train_validation_loss", fig)
+
+    comparison = pd.concat(metric_frames, ignore_index=True)
+    comparison.to_csv(output / "comparison.csv", index=False)
+    mlp_comparison = pd.DataFrame(mlp_rows)
+    mlp_comparison.to_csv(output / "mlp_comparison.csv", index=False)
+    fig, axes = plt.subplots(1, 2, figsize=(11, 4.2), layout="constrained")
+    for ax, (version, _, _, log, record) in zip(axes, versions):
+        ax.plot(log.epoch, log.train_loss, label="Training loss")
+        ax.plot(log.epoch, log.validation_loss, label="Validation loss")
+        ax.axvline(record["saved_epoch"], ls="--", color="#66518E",
+                   label=f"Saved epoch {record['saved_epoch']}")
+        ax.set(xlabel="Epoch", ylabel="Mean cross-entropy", title=version)
+        ax.legend(frameon=False)
+    fig.savefig(output / "training_loss_comparison.png", dpi=250, bbox_inches="tight")
+    plt.close(fig)
+    protocol_record = {
+        "experiment": "matched v1 fixed60 vs v3 early stopping",
+        "only_changed_factor": "MLP stopping and checkpoint selection strategy",
+        "train_cells": 420, "validation_cells": 105, "test_cells": 175,
+        "train_ids_sha256": ids_hash(data.obs_names[train]),
+        "validation_ids_sha256": ids_hash(data.obs_names[validation]),
+        "test_ids_sha256": ids_hash(data.obs_names[test]),
+        "initial_state_sha256": fixed_record["initial_state_sha256"],
+        "identical_prefix_epochs_verified": len(stopped_log),
+        "prefix_metrics_weights_and_batch_order_equal": True,
+        "scaler_means_scales_equal": True, "scaler_fit_cells": 420,
+        "hidden": HIDDEN, "input_features": data.n_vars, "classes": n_classes,
+        "optimizer": "Adam", "learning_rate": LEARNING_RATE, "weight_decay": WEIGHT_DECAY,
+        "batch_size": BATCH_SIZE, "seed": SEED, "max_epochs": MAX_EPOCHS,
+        "patience": PATIENCE, "min_delta": MIN_DELTA,
+        "test_forward_passes_per_mlp": 1,
+        "v1": fixed_record, "v3": stopped_record,
+        "historical_archive": ["results", "results_v2", "results_v3"],
+    }
+    write_json(output / "protocol.json", protocol_record)
+    report = f"""# v1 与 v3 相同条件重新实验
+
+## 本次问题与比较范围
+
+本次重新执行两个独立训练过程，比较固定训练 60 轮与验证集早停策略。
+本目录内 v1 和 v3 都有相同的 420 个训练细胞、105 个验证细胞和 175 个测试细胞。
+两组共享网络结构、随机初始化、Adam 参数、Scaler、训练批次顺序和测试顺序。
+唯一改变的实验因素是 MLP 的停止及保存轮次策略。
+
+本次 v1 是重新实验的固定轮数基线，和原 results 中的历史 v1 分开保存。
+历史 results_v3 中的全 525 个细胞两阶段重训记录属于此前的另一个协议。
+本报告中的结果全部来自本次实际训练。
+
+## 数据与训练
+
+使用本地 Scanpy PBMC68k Reduced，700 × 765，10 类。
+从原 results/tables/classification_split.csv 读取训练池与测试集，
+按原测试预测表保留 175 个测试细胞的顺序。
+在原 525 个训练池中按类别分层、种子 42 划分出 420/105。
+训练、验证、测试互不重叠，所有类别均有样本。
+
+Scaler 只在 420 个训练细胞拟合，两组验证与测试数据只 transform。
+MLP 为 765→128→ReLU→64→ReLU→10，直接输出 logits，
+使用 CrossEntropyLoss、Adam、学习率 0.001、weight_decay 0.0001、batch_size 32。
+
+v1 和 v3 每轮都计算训练 Loss、验证 Loss、验证 Accuracy 和验证 Macro-F1。
+v1 固定采用第 60 轮，不使用验证指标改变训练时长。
+v3 在连续 5 轮未达到 min_delta=0.0001 的改善幅度时停止，恢复最低验证 Loss 的快照。
+
+两组分别从头训练，初始化哈希一致。
+前 {len(stopped_log)} 轮的批次顺序、权重哈希和全部训练验证指标逐轮一致。
+所有训练和模型选择完成后，再对两组 MLP 分别测试一次。
+
+Logistic Regression 与 Random Forest 同样只使用 420 个训练细胞，
+它们的参数与预测在两个版本中完全相同，方便把差异限定在 MLP 训练轮数选择。
+
+## 本次 MLP 实测结果
+
+{markdown_table(mlp_comparison)}
+
+## 三模型结果
+
+{markdown_table(comparison)}
+
+## 怎样看图和文件
+
+training_loss_comparison.png 左侧是 v1 的 60 轮记录，右侧是 v3 的提前停止记录。
+横轴是 Epoch，纵轴是平均交叉熵，虚线标出实际采用的模型轮次。
+两个版本的 figures/mlp_train_validation_loss.png 单独绘制各自训练与验证曲线。
+验证 Loss 从最低点上升时，说明继续拟合训练数据没有同步改善验证目标。
+
+每个版本的 model_comparison.png 比较三模型的 Accuracy 与宏平均指标。
+confusion_*.png 和对应 CSV 的行是真实标签，列是预测标签，对角线为正确数量。
+
+classification_split.csv 保存共同划分及组内顺序，class_counts.csv 保存各类规模。
+v1/tables 和 v3/tables 分别保存逐轮指标、模型轮次记录、最终测试指标、
+逐类指标、逐细胞预测、混淆矩阵及错分。
+models 下的 mlp.pt 是对应版本实际采用的权重，mlp_scaler.joblib 是对应缩放器。
+protocol.json 保存固定条件、两组轮次和训练过程一致性检查。
+comparison.csv 是三模型对比，mlp_comparison.csv 是本次 MLP 早停对照的完整数值。
+
+## 如何解释这次结果
+
+本次固定 60 轮的测试 Accuracy 为 {mlp_rows[0]['test_accuracy']:.2%}，
+早停版本为 {mlp_rows[1]['test_accuracy']:.2%}。
+对应 Macro-F1 为 {mlp_rows[0]['test_macro_f1']:.6f} 和 {mlp_rows[1]['test_macro_f1']:.6f}。
+应按同一划分下的实际结果描述各指标，不能预设早停一定更好。
+
+这是一组单随机种子、小样本的细胞级留出。最小验证类仅 1 个细胞、最小测试类仅 2 个细胞。
+同一个测试集已被用于多个历史实验，本次没有根据新测试分数调整策略，
+但后续更充分的确认需要训练池内部多次分层评估及新的独立供体数据。
+公开 Reduced 子集的上游预处理仍不能在当前切分内重做。
+
+## 复现
+
+在项目根目录执行
+
+```bash
+conda run -n ai4sci python src/06_cell_classification.py --output results_matched_recheck
+```
+
+默认协议现在是本次相同条件的 v1/v3 实验。
+此前两阶段协议可用 --protocol two-stage 和新的 --output 目录运行。
+"""
+    (output / "实验结果说明.md").write_text(report)
+    print(comparison.to_string(index=False), flush=True)
+    print(mlp_comparison.to_string(index=False), flush=True)
+    return adata
+
+
+
 if __name__ == "__main__":
     import argparse
     from importlib.metadata import version
     from time import perf_counter
 
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--output", type=Path, default=ROOT / "results_v3")
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--protocol", choices=["matched", "two-stage"], default="matched")
+
     args = parser.parse_args()
+    if args.output is None:
+        args.output = ROOT / ("results_matched" if args.protocol == "matched" else "results_v3")
     started = perf_counter()
-    run(None, ROOT, args.output)
+    run(None, ROOT, args.output, protocol=args.protocol)
     metadata = {
         "python_path": sys.executable, "seed": SEED, "device": "cpu", "torch_threads": 2,
+        "protocol": args.protocol,
         "elapsed_seconds": round(perf_counter() - started, 3),
         "learning_rate": LEARNING_RATE, "weight_decay": WEIGHT_DECAY, "batch_size": BATCH_SIZE,
         "packages": {name: version(name) for name in (
